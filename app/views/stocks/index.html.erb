@@ -1,0 +1,152 @@
+<div class="well">
+	<br><hr>
+<div class="title_info">
+	<p><small>Suchergebnisse für: <%= "#{@company}" %></small></p><hr>
+
+</div>
+
+
+
+<% @results.each do |result| %>
+
+
+
+
+<div class="result">
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+
+<% if @company.downcase == "xing" %>
+	<!-- company logo image -->
+	<img src="<%= result.css('img').attr('src') %>"><br>
+		
+	<code>weitere Informationen erhalten Sie auf Xing.com</code>
+
+<% else %>
+
+	<!-- company logo image -->
+	<img src="<%= result.css('[itemprop="logo"]').attr('src') %>"><br>
+		
+	<!-- company name	 -->
+	<p class="lead"><%= result.css('h1.name.organization-name.fn').first.text %></p>
+
+	
+
+	
+	
+	</div>
+	</div>
+	<br>
+	<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+	<!-- bio -->
+
+	<div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="">
+              Über uns
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="true">
+          <div class="panel-body">
+            	
+							<p><%= result.css('#about-us-content p').text %></p>
+							<p><%= result.css('#about-us-content b').text %></p>
+
+							<% @puppies.each do |puppy| %>
+							<a href="<%= puppy['href^="http://'] %>"><%= puppy.text %></a><br>
+							<% end %>
+
+          </div>
+        </div>
+    </div>
+
+
+	<br>
+	<!-- address -->
+
+		<div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="">
+              Steckbrief/Kontakt
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="true">
+          <div class="panel-body">
+            	
+							<p><strong>Gründungsjahr</strong> <%= result.css('[itemprop="foundingDate"]').text %></p>
+	<p><strong>Branche</strong> <%= @wauwau.text %></p>
+
+
+	
+
+	<br>
+	<p><%= result.css('[itemprop="streetAddress"]').text %></p>
+	<p><%= result.css('[itemprop="postalCode"]').text %> <%= result.css('[itemprop="addressLocality"]').text %></p>
+	<p><%= result.css('[itemprop="addressCountry"]').text %></p>
+	<p>Tel: <%= result.css('[itemprop="telephone"]').text %></p>
+	<p>Fax: <%= result.css('[itemprop="faxNumber"]').text %></p>	
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+	
+
+
+
+</div>
+	
+
+</div>
+</div>
+
+<% end %>
+
+<% end %>
+
+
+<hr>
+
+
+
+<section id="zahlen">
+
+<% @results2.each do |result2| %>
+
+	<p><%= result2.css('h2').text %></p>
+
+	
+
+	<p><%= result2.css('stat bar-graph').text %></p>
+</section>
+
+<% end %>
+
+
+
+
+	
+
+
+<footer class="footer">
+
+  <nav>
+    <ul>
+      <small><li><a href="http://www.xing.de">Quelle: Xing</a></li></small>
+   
+    </ul>
+  </nav>
+</footer>
+
+</div>
+
+
+
